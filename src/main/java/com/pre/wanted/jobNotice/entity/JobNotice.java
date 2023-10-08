@@ -43,4 +43,11 @@ public class JobNotice {
         this.skill = jobNoticeRequest.getSkill();
     }
 
+    public void update(String position, int reward, String contents, String skill) {
+        this.position = position;
+        this.reward = reward;
+        this.contents = contents;
+        this.skill = skill;
+    }
+
 }
