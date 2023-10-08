@@ -34,6 +34,11 @@ public class JobNoticeService {
         return jobNotice;
     }
 
+    // 채용공고 삭제
+    public void delete(long id) {
+        jobNoticeRepository.deleteById(id);
+    }
+
     public Company findCompanyById(long id) {
         return companyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not fount company: " + id));

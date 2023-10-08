@@ -27,4 +27,11 @@ public class JobNoticeController {
 
         return ResponseEntity.ok().body(updatedJobNotice);
     }
+
+    @DeleteMapping("/api/jobNotice/{id}")
+    public ResponseEntity<JobNotice> deleteJobNotice(@PathVariable long id) {
+        jobNoticeService.delete(id);
+
+        return ResponseEntity.ok().build();
+    }
 }
