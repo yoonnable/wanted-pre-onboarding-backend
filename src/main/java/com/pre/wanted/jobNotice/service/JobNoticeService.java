@@ -2,6 +2,7 @@ package com.pre.wanted.jobNotice.service;
 
 import com.pre.wanted.company.entity.Company;
 import com.pre.wanted.company.repository.CompanyRepository;
+import com.pre.wanted.company.service.CompanyService;
 import com.pre.wanted.jobNotice.dto.AddJobNoticeRequest;
 import com.pre.wanted.jobNotice.dto.UpdateJobNoticeRequest;
 import com.pre.wanted.jobNotice.entity.JobNotice;
@@ -16,13 +17,13 @@ import java.util.List;
 @Service
 public class JobNoticeService {
 
+    private final CompanyService companyService;
     private final JobNoticeRepository jobNoticeRepository;
-    private final CompanyRepository companyRepository;
 
     // 채용공고 등록
     @Transactional
     public JobNotice save(AddJobNoticeRequest request) {
-        Company company = findCompanyById(request.getCompanyId());
+        Company company = companyService.findCompanyById(request.getCompanyId());
         return jobNoticeRepository.save(new JobNotice(request, company));
     }
 
@@ -55,10 +56,5 @@ public class JobNoticeService {
     public JobNotice findById(long id) {
         return jobNoticeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found JobNotice: " + id));
-    }
-
-    public Company findCompanyById(long id) {
-        return companyRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not fount company: " + id));
     }
 }
