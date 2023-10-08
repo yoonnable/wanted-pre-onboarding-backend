@@ -10,6 +10,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class JobNoticeService {
@@ -37,6 +39,11 @@ public class JobNoticeService {
     // 채용공고 삭제
     public void delete(long id) {
         jobNoticeRepository.deleteById(id);
+    }
+
+    // 채용공고 목록 조회
+    public List<JobNotice> finalAll() {
+        return jobNoticeRepository.findAll();
     }
 
     public Company findCompanyById(long id) {

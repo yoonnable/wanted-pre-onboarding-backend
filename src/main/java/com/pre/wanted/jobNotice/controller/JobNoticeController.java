@@ -1,6 +1,7 @@
 package com.pre.wanted.jobNotice.controller;
 
 import com.pre.wanted.jobNotice.dto.AddJobNoticeRequest;
+import com.pre.wanted.jobNotice.dto.JobNoticeResponse;
 import com.pre.wanted.jobNotice.dto.UpdateJobNoticeRequest;
 import com.pre.wanted.jobNotice.entity.JobNotice;
 import com.pre.wanted.jobNotice.service.JobNoticeService;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -33,5 +36,15 @@ public class JobNoticeController {
         jobNoticeService.delete(id);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/api/jobNotice")
+    public ResponseEntity<List<JobNoticeResponse>> findAllJobNotice() {
+        List<JobNoticeResponse> jobNoticeResponses = jobNoticeService.finalAll()
+                .stream()
+                .map(JobNoticeResponse::new)
+                .toList();
+
+        return ResponseEntity.ok().body(jobNoticeResponses);
     }
 }
