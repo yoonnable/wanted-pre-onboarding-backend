@@ -1,5 +1,6 @@
 package com.pre.wanted.jobNotice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pre.wanted.company.entity.Company;
 import com.pre.wanted.jobNotice.dto.AddJobNoticeRequest;
 import jakarta.persistence.*;
@@ -18,6 +19,7 @@ public class JobNotice {
     @Column(updatable = false)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     private Company company;
