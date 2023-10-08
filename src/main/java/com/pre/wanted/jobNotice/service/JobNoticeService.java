@@ -46,6 +46,11 @@ public class JobNoticeService {
         return jobNoticeRepository.findAll();
     }
 
+    // 채용공고 검색
+    public List<JobNotice> findBySearch(String search) {
+        return jobNoticeRepository.findBySearch(search);
+    }
+
     public Company findCompanyById(long id) {
         return companyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not fount company: " + id));

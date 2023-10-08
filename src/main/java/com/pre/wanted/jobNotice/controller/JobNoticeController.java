@@ -47,4 +47,14 @@ public class JobNoticeController {
 
         return ResponseEntity.ok().body(jobNoticeResponses);
     }
+
+    @GetMapping("/api/jobNotice/search")
+    public ResponseEntity<List<JobNoticeResponse>> searchJobNotice(@RequestParam String search) {
+        List<JobNoticeResponse> jobNoticeResponses = jobNoticeService.findBySearch(search)
+                .stream()
+                .map(JobNoticeResponse::new)
+                .toList();
+
+        return ResponseEntity.ok().body(jobNoticeResponses);
+    }
 }
