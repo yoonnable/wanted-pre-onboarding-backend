@@ -20,6 +20,7 @@ public class JobNoticeService {
     private final CompanyRepository companyRepository;
 
     // 채용공고 등록
+    @Transactional
     public JobNotice save(AddJobNoticeRequest request) {
         Company company = findCompanyById(request.getCompanyId());
         return jobNoticeRepository.save(new JobNotice(request, company));
@@ -28,8 +29,7 @@ public class JobNoticeService {
     // 채용공고 수정
     @Transactional
     public JobNotice update(long id, UpdateJobNoticeRequest request) {
-        JobNotice jobNotice = jobNoticeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found JobNotice: " + id));
+        JobNotice jobNotice = findById(id);
 
         jobNotice.update(request.getPosition(), request.getReward(), request.getContents(), request.getSkill());
 
@@ -49,6 +49,12 @@ public class JobNoticeService {
     // 채용공고 검색
     public List<JobNotice> findBySearch(String search) {
         return jobNoticeRepository.findBySearch(search);
+    }
+
+    // 채용공고 상세 페이지 조회
+    public JobNotice findById(long id) {
+        return jobNoticeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found JobNotice: " + id));
     }
 
     public Company findCompanyById(long id) {

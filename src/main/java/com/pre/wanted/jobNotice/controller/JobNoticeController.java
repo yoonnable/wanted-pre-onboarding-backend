@@ -1,6 +1,7 @@
 package com.pre.wanted.jobNotice.controller;
 
 import com.pre.wanted.jobNotice.dto.AddJobNoticeRequest;
+import com.pre.wanted.jobNotice.dto.JobNoticeDetailResponse;
 import com.pre.wanted.jobNotice.dto.JobNoticeResponse;
 import com.pre.wanted.jobNotice.dto.UpdateJobNoticeRequest;
 import com.pre.wanted.jobNotice.entity.JobNotice;
@@ -56,5 +57,12 @@ public class JobNoticeController {
                 .toList();
 
         return ResponseEntity.ok().body(jobNoticeResponses);
+    }
+
+    @GetMapping("/api/jobNotice/{id}")
+    public ResponseEntity<JobNoticeDetailResponse> findJobNotice(@PathVariable long id) {
+        JobNotice jobNotice = jobNoticeService.findById(id);
+
+        return ResponseEntity.ok().body(new JobNoticeDetailResponse(jobNotice));
     }
 }
