@@ -39,4 +39,8 @@ public class Company {
         this.location = location;
         this.jobNotices = jobNotices;
     }
+
+    public void update(List<JobNotice> jobNotices) {
+        this.jobNotices = jobNotices;
+    }
 }
