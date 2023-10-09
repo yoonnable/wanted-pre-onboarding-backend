@@ -1,4 +1,4 @@
-package com.pre.wanted.apply;
+package com.pre.wanted.apply.controller;
 
 import com.pre.wanted.apply.dto.AddApplyRequest;
 import com.pre.wanted.apply.entity.Apply;
