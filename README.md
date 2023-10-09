@@ -31,6 +31,8 @@ Java + SpringBoot
 <img src="https://github.com/yoonnable/wanted-pre-onboarding-backend/assets/71828438/d90289e9-f837-48a1-a076-e8be1f56a35c" width=450px/>
 
 ## API 명세서
+[API_명세서.pdf](https://github.com/yoonnable/wanted-pre-onboarding-backend/files/12844140/8c335b47-231f-428e-a1a3-7e6e5b8e4b54_API_.pdf)
+
 
 ## 구현 과정
 ##### 1. DB 설계
